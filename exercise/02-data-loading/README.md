@@ -1,9 +1,12 @@
 # 02. Data Loading
 
 ## 📝 Notes
-In the same file as our route component, define an exported top level function called loader that is responsible for returning data needed by the component.
 
-Then, in the component, use `useLoaderData<typeof loader>()` to grab the data from the server and use in the component
+In the same file as our route component, define an exported top level function
+called loader that is responsible for returning data needed by the component.
+
+Then, in the component, use `useLoaderData<typeof loader>()` to grab the data
+from the server and use in the component
 
 ## 🤓 Background
 
