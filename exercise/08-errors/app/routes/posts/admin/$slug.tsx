@@ -3,6 +3,7 @@ import { json, redirect } from "@remix-run/node";
 import {
   Form,
   useActionData,
+  useCatch,
   useLoaderData,
   useTransition,
 } from "@remix-run/react";
@@ -14,6 +15,25 @@ import {
   getPost,
   updatePost,
 } from "~/models/post.server";
+import { ErrorFallback } from "../../../components";
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error);
+
+  return <ErrorFallback />;
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  // "caught" is the response that was through
+  if (caught.status === 404) {
+    return <div><h1 className="text-xl">404</h1>Not found</div>;
+  }
+
+  throw new Error(`Unexpected caught response with status: ${caught.status}`);
+}
+
 
 export async function loader({ params }: LoaderArgs) {
   invariant(params.slug, "slug not found");
@@ -22,7 +42,15 @@ export async function loader({ params }: LoaderArgs) {
   }
 
   const post = await getPost(params.slug);
-  invariant(post, `Post not found: ${params.slug}`);
+  if(!post) {
+    throw new Response("not found", { status: 404 });
+  }
+
+  // this simulates an error on 'my-first-post' to show the error on that post
+  if(post.slug === "my-first-post") {
+    throw new Error("Test issue!");
+  }
+  
   return json({ post });
 }
 
