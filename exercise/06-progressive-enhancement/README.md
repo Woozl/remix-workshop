@@ -1,6 +1,7 @@
 # 06. Progressive Enhancement
 
 ## 📝 Notes
+We can use useTransition hook to query the form state and render the proper loading state. We can use the `prefetch` argument in the `Link` tag to hit the API for the page when the user hovers over the link, so it is available when they click on it.
 
 ## 🤓 Background
 
