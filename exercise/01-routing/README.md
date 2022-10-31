@@ -1,6 +1,9 @@
 # 01. Routing
 
 ## 📝 Notes
+Create a route by creating a file withing the `app/routes` folder, exporting a default component that will be rendered as part of that route. 
+
+We can use `Link` with a `to` attribute to provide client-side routing (rather than using an anchor tag)
 
 ## 🤓 Background
 
