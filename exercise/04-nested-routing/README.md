@@ -1,7 +1,7 @@
 # 04. Nested Routing
 
 ## 📝 Notes
-
+We can make nest routes by using an `<Outlet />` Component in the parent route. This component looks renders the child route within the parent route's page. If the url we go to includes the child, the child component is rendered within the parent. If it's not, the `index` route is rendered.
 ## 🤓 Background
 
 Most web applications have multiple route "segments". You might think of a URL
